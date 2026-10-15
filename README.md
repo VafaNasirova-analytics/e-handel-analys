@@ -6,6 +6,6 @@ Vafa: Vad säljer?
 Osman: Var säljer vi?
 Ylva: Hur ser en typisk order ut? 
 Daniel: När säljer vi?
-Fredrik: Topplista
+Fredrik: Tidsintervall
 Mattias: Eventuella avvikelser.
 Alla ska jobba med sina delar för att komma igång med projektet. Nästa onsdag (21:aoktober) ska vi ha tredje mötet och se hur lång alla har kommit och bestämma hur vi ska fortsätta.
