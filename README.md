@@ -9,3 +9,6 @@ Daniel: När säljer vi?
 Fredrik: Tidsintervall
 Mattias: Eventuella avvikelser.
 Alla ska jobba med sina delar för att komma igång med projektet. Nästa onsdag (21:aoktober) ska vi ha tredje mötet och se hur lång alla har kommit och bestämma hur vi ska fortsätta.
+
+Påbörjat arbete i notebooken för att anropa funktioner/Ylva
+Funktioner och visualiseringar för AOV på gång/Ylva
