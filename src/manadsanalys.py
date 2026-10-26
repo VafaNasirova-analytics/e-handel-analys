@@ -1,25 +1,27 @@
 import pandas as pd
 
-data = pd.read_csv("data/ecommerce_sales.csv")
+df = pd.read_csv("data/ecommerce_sales.csv")   # Läs in försäljningsdata från CSV-filen
 
-data["date"] = pd.to_datetime(data["date"])
+df_manad = df.copy()   # Skapa en kopia för månadsanalysen utan att ändra originaldata
 
-data["månad"] = data["date"].dt.month
+df_manad["date"] = pd.to_datetime(df_manad["date"])   # Omvandla datumkolumnen från sträng till datetime
 
-def månadsförsäljning(data):
-    return data.groupby("månad")["revenue"].sum()
+df_manad["månad"] = df_manad["date"].dt.month   # Skapa en ny kolumn med månadsnummer (1–12) från datumet
 
-def månadsförsäljning_kategori(data):
-    return data.groupby(["category", "månad"])["revenue"].sum()
+def månadsförsäljning(df):
+    return df.groupby("månad")["revenue"].sum()
 
-def månadsförsäljning_stad(data):
-    return data.groupby(["city", "månad"])["revenue"].sum()
+def månadsförsäljning_kategori(df):
+    return df.groupby(["category", "månad"])["revenue"].sum()
 
-def antal_enheter_månad(data):
-    return data.groupby("månad")["units"].sum()
+def månadsförsäljning_stad(df):
+    return df.groupby(["city", "månad"])["revenue"].sum()
 
-def antal_unika_order_månad(data):
-    return data.groupby("månad")["order_id"].nunique()
+def antal_enheter_månad(df):
+    return df.groupby("månad")["units"].sum()
+
+def antal_unika_order_månad(df):
+    return df.groupby("månad")["order_id"].nunique()
 
 
 
