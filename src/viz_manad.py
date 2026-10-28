@@ -1,3 +1,4 @@
+import pandas as pd
 import matplotlib.pyplot as plt
 
 def visa_manadsforsaljning(omsattning):
@@ -26,6 +27,7 @@ def visa_manadsforsaljning_kategori(omsattning_kategori):
 
     ax.set_title("Månadsförsäljning per kategori – första halvåret 2024")
     ax.set_xlabel("Månad")
+    ax.set_xticklabels(["Jan", "Feb", "Mar", "Apr", "Maj", "Jun"], rotation=45)
     ax.set_ylabel("Omsättning (kr)")
     ax.legend(title="Kategori", loc="upper left", bbox_to_anchor=(1.02, 1))
     ax.grid(axis="y", linestyle="--", alpha=0.6)
@@ -63,7 +65,6 @@ def visa_manadsforsaljning_kategori(omsattning_kategori):
     plt.tight_layout()
     plt.show()
 
-    import matplotlib.pyplot as plt
 
 def visa_manadsforsaljning_stad(omsattning_stad):
     """Visar månadsförsäljning uppdelad per stad som staplat stapeldiagram."""
@@ -80,14 +81,14 @@ def visa_manadsforsaljning_stad(omsattning_stad):
     ax.set_title("Månadsförsäljning per stad – första halvåret 2024")
     ax.set_xlabel("Månad")
     ax.set_ylabel("Omsättning (kr)")
-    ax.set_xticklabels(["Jan", "Feb", "Mar", "Apr", "Maj", "Jun"], rotation=0)
+    ax.set_xticklabels(["Jan", "Feb", "Mar", "Apr", "Maj", "Jun"], rotation=45)
     ax.legend(title="Stad", bbox_to_anchor=(1.02, 1), loc="upper left")
     ax.grid(axis="y", linestyle="--", alpha=0.5)
 
     # Totalsumma ovanför varje stapel
-    for i, total in enumerate(totals):
-        ax.text(i, total + total * 0.01, f"{int(total):,}".replace(",", " "),
-                ha="center", va="bottom", fontsize=10, fontweight="bold")
+    #for i, total in enumerate(totals):
+       # ax.text(i, total + total * 0.01, f"{int(total):,}".replace(",", " "),
+               # ha="center", va="bottom", fontsize=10)
 
     # Procent inne i varje segment
     for i in range(len(pivot.index)):
@@ -209,7 +210,7 @@ def visa_electronics_enheter_manad(antal_enheter):
     ax.set_ylabel("Antal sålda enheter")
 
     ax.set_xticks([1, 2, 3, 4, 5, 6])
-    ax.set_xticklabels(["Jan", "Feb", "Mar", "Apr", "Maj", "Jun"])
+    ax.set_xticklabels(["Jan", "Feb", "Mar", "Apr", "Maj", "Jun"], rotation=45)
 
     ax.bar_label(staplar, padding=3)
     ax.grid(axis="y", linestyle="--", alpha=0.4)
@@ -218,8 +219,15 @@ def visa_electronics_enheter_manad(antal_enheter):
     plt.tight_layout()
     plt.show()
 
-def visa_orderutveckling_index(tabell):
+def visa_orderutveckling_index(antal_order, ordervarde):
     """Visar utvecklingen av orderantal och ordervärde, januari = 100."""
+    tabell = pd.DataFrame({
+        "Unika order": antal_order,
+        "Ordervärde (kr)": ordervarde
+    })
+
+    tabell.index = ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun"]
+   
 
     kolumner = ["Unika order", "Ordervärde (kr)"]
 
@@ -266,11 +274,42 @@ def visa_orderutveckling_index(tabell):
         "(index, januari = 100)"
     )
     ax.set_xlabel("Månad")
+    ax.tick_params(axis="x", labelrotation=45)
     ax.set_ylabel("Index (januari = 100)")
 
     ax.legend(loc="lower right")
     ax.grid(axis="y", linestyle="--", alpha=0.3)
     ax.set_ylim(65, 120)
+
+    plt.tight_layout()
+    plt.show()
+
+def visa_kategori_och_stad(omsattning_kategori, omsattning_stad):
+
+    kategori = omsattning_kategori.unstack(level=0, fill_value=0)
+    stad = omsattning_stad.unstack(level=0, fill_value=0)
+
+    manader = ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun"]
+
+    # Skapa två diagram bredvid varandra
+    fig, ax = plt.subplots(1, 2, figsize=(10, 5), sharey=True)
+
+    # Vänster diagram – kategorier
+    kategori.plot(kind="bar", stacked=True, ax=ax[0])
+
+    ax[0].set_title("Omsättning per kategori")
+    ax[0].set_xlabel("Månad")
+    ax[0].set_ylabel("Omsättning (kr)")
+    ax[0].set_xticklabels(manader, rotation=45)
+    ax[0].legend(title="Kategori", fontsize=8)
+
+    # Höger diagram – städer
+    stad.plot(kind="bar", stacked=True, ax=ax[1])
+
+    ax[1].set_title("Omsättning per stad")
+    ax[1].set_xlabel("Månad")
+    ax[1].set_xticklabels(manader, rotation=45)
+    ax[1].legend(title="Stad", fontsize=8)
 
     plt.tight_layout()
     plt.show()
