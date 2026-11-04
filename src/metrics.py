@@ -1,8 +1,13 @@
 def calc_aov(df):
-    """
-    Beräknar total intäkt dividerad med antal unika order
-    """
-    return round(df["revenue"].sum() / df["order_id"].nunique(),2)
+    
+    """Beräknar genomsnittligt ordervärde (AOV)."""
+
+    antal_order = df["order_id"].nunique()
+
+    if antal_order == 0:
+        return 0.0
+
+    return round(df["revenue"].sum() / antal_order, 2)
 
 
 def calc_total_revenue(df):
@@ -26,11 +31,15 @@ def units_by_category(df):
     return df.groupby("category")["units"].sum().sort_values(ascending=False)
 
 def revenue_per_unit_by_category(df):
-    """Beräknar genomsnittlig intäkt per såld enhet och kategori"""
-    intakter=df.groupby("category")["revenue"].sum()
-    enheter=df.groupby("category")["units"].sum()
+    """Beräknar genomsnittlig intäkt per såld enhet och produktkategori."""
 
-    return (intakter/enheter).round(2).sort_values(ascending=False)
+    intakter = df.groupby("category")["revenue"].sum()
+    enheter = df.groupby("category")["units"].sum()
+
+    intakt_per_enhet = intakter.div(enheter.replace(0, float("nan")))
+
+    return intakt_per_enhet.round(2).sort_values(ascending=False)
+
 
 def revenue_by_city(df):
     """Beräknar total omsättning per stad."""
@@ -76,7 +85,7 @@ def order_statistics(df):
     return ordervarden.describe().round(2)
 
 
-def order_outliers(df):
+def order_outliers(df, return_limits=False):
     """Identifierar avvikande ordervärden med IQR-metoden."""
 
     ordervarden = df.groupby("order_id")["revenue"].sum()
@@ -94,4 +103,9 @@ def order_outliers(df):
         (ordervarden > ovre_grans)
     ]
 
-    return avvikande.sort_values(ascending=False)
+    avvikande = avvikande.sort_values(ascending=False)
+
+    if return_limits:
+        return avvikande, q1, q3, iqr, nedre_grans, ovre_grans
+
+    return avvikande

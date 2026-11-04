@@ -7,7 +7,8 @@ def aov_plot(df):
     """
     import matplotlib.pyplot as plt
 
-    aov_total = df["revenue"].mean().round(2)
+    aov_total = df["revenue"].sum() / df["order_id"].nunique()
+    
 
     plt.hist(df["revenue"], bins=70, color='steelblue', edgecolor='white')
     plt.title("Distribution of Order Values")
@@ -265,3 +266,58 @@ def plot_order_distribution(df):
     ax.legend()
     plt.tight_layout()
     plt.show()
+
+
+def plot_category_revenue_change(comparison):
+    """Visar omsättningsförändring per kategori."""
+
+    import matplotlib.pyplot as plt
+
+    changes = (
+        comparison["Förändring (kr)"]
+        .sort_values() / 1000
+    )
+
+    colors = [
+        "tomato" if value < 0 else "seagreen"
+        for value in changes
+    ]
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    bars = ax.bar(
+        changes.index,
+        changes.values,
+        color=colors,
+        width=0.6
+    )
+
+    ax.axhline(0, color="black", linewidth=0.8)
+
+    ax.set_title(
+        "Omsättningsförändring per kategori: februari–mars 2024",
+        fontsize=13,
+        pad=15
+    )
+
+    ax.set_xlabel("Produktkategori")
+    ax.set_ylabel("Förändring i omsättning (tkr)")
+
+    ax.grid(axis="y", linestyle="--", alpha=0.25)
+    ax.set_axisbelow(True)
+
+    ax.bar_label(
+        bars,
+        labels=[f"{value:+.1f}" for value in changes],
+        padding=4,
+        fontsize=10
+    )
+
+    ax.margins(y=0.15)
+
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+
+    fig.tight_layout()
+
+    return fig
