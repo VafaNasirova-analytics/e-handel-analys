@@ -16,4 +16,4 @@ Funktioner och visualiseringar för AOV på gång/Ylva
 Vafa har gjort färdigt sin del som handlade om Vad företaget säljer. Den ligger i en separat mapp under notebooks som heter Vafa_vadsaljer.ipynb Gruppen behöver läsa och kommentera innan den läggs över i report.ipynb. 
 
 
-Vafa har sammanställt rapporten och uppdaterar med slutgiltig version. Överenskommer att övriga medlemmar som inkommer med arbete efter idag gör egna rapporter.
+Vafa har sammanställt rapporten och uppdaterar med slutgiltig version med sin egna, Ylvas och Fredriks branch. Överenskommer att övriga medlemmar som inkommer med arbete efter idag gör egna rapporter.
