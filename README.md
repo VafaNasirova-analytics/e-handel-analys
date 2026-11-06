@@ -1,19 +1,45 @@
-Vafa skapade repositoryt.
+E-handelsanalys – Snabbrapport och GitHub-samarbete
 
-Efter gruppmöte bestämdes att Ylva lägger upp punkterna från arbetet som issues som fördelas vid nästa möte.
-Vi har möte 2 den 14:e oktober. Vi delar upp arbetet och alla tar varsin fråga. 
-Vafa: Vad säljer? 
-Osman: Var säljer vi?
-Ylva: Hur ser en typisk order ut? 
-Daniel: När säljer vi?
-Fredrik: Tidsintervall
-Mattias: Eventuella avvikelser.
-Alla ska jobba med sina delar för att komma igång med projektet. Nästa onsdag (21:aoktober) ska vi ha tredje mötet och se hur lång alla har kommit och bestämma hur vi ska fortsätta.
+Projektbeskrivning
 
-Påbörjat arbete i notebooken för att anropa funktioner/Ylva
-Funktioner och visualiseringar för AOV på gång/Ylva
+Detta projekt är ett grupparbete i kursen "Pythonprogrammering och statistisk dataanalys". Vi har analyserat försäljningsdata från en fiktiv e-handelsplattform med syftet att ta fram ett beslutsunderlag inför kommande kampanjperioder.
+Analysen omfattar bland annat försäljningsintäkter, produktkategorier, geografiska skillnader, försäljningsutveckling över tid, genomsnittligt ordervärde (AOV) och avvikande beställningar.
 
-Vafa har gjort färdigt sin del som handlade om Vad företaget säljer. Den ligger i en separat mapp under notebooks som heter Vafa_vadsaljer.ipynb Gruppen behöver läsa och kommentera innan den läggs över i report.ipynb. 
+Viktiga filer
+För att underlätta granskningen har vi sammanställt de filer som är relevanta för projektets slutresultat:
 
+notebooks/report.ipynb – Gruppens gemensamma huvudrapport.
 
-Vafa har sammanställt rapporten och uppdaterar med slutgiltig version med sin egna, Ylvas och Fredriks branch. Överenskommer att övriga medlemmar som inkommer med arbete efter idag gör egna rapporter.
+notebooks/report1.ipynb – Mattias separata rapportdel med kompletterande analys.
+
+src/metrics.py – Funktioner för beräkning av nyckeltal och statistiska mått.
+
+src/viz.py – Funktioner för visualisering av analysresultaten.
+
+src/io_utils.py – Funktioner för datainläsning.
+
+data/ecommerce_sales.csv – Datasetet som ligger till grund för analysen.
+
+requirements.txt – De Pythonpaket och versionsnummer som behövs för att köra projektet.
+
+Projektet är utvecklat i Python med Jupyter Notebook. Rapporten använder funktioner från projektets egna Pythonmoduler för datainläsning, beräkningar och visualiseringar.
+
+Arbetsprocess och samarbete
+Grupparbetet har genomförts med hjälp av GitHub, där vi har använt separata branches och Pull Requests för att möjliggöra parallellt arbete och gemensam granskning.
+Varje gruppmedlem har ansvarat för sin tilldelade frågeställning och arbetat självständigt med tillhörande analyser, beräkningar och visualiseringar. Arbetet har utförts i separata notebooks och Pythonfiler för att undvika konflikter och underlätta samarbetet.
+
+För att säkerställa en enhetlig struktur, konsekvent kod och ett sammanhängande språk i slutrapporten valde vi att låta en gruppmedlem ansvara för den tekniska sammanställningen. Detta innebar att de individuellt utvecklade funktionerna och analyserna integrerades i de gemensamma filerna.
+
+Samtliga gruppmedlemmar har varit delaktiga i den gemensamma arbetsprocessen genom regelbundna möten, diskussioner, granskning och återkoppling på rapportens innehåll.
+
+Vi har valt att behålla de individuella arbetsfilerna i GitHub-repot för att dokumentera arbetsprocessen och visa hur projektet har utvecklats. Dessa filer utgör arbetsmaterial och behöver inte granskas för att ta del av projektets slutresultat.
+
+Ansvarsfördelning
+Ylva, Vafa och Fredrik: Har ansvarat för sina respektive frågeställningar och genomfört tillhörande analyser. Var och en har utvecklat egna funktioner för beräkningar och visualiseringar samt dokumenterat sina resultat i separata notebooks. Arbetet har därefter sammanställts i den gemensamma huvudrapporten report.ipynb, med tillhörande funktioner i metrics.py och viz.py.
+
+Mattias: Ansvarar för sin tilldelade frågeställning och kompletterande analys, som presenteras i report1.ipynb.
+
+Slutrapport
+Projektets huvudsakliga resultat, visualiseringar, slutsatser och rekommendationer presenteras i notebooks/report.ipynb.
+Mattias kompletterande analys presenteras senare, separat i notebooks/report1.ipynb.
+Övriga notebooks och Pythonfiler har behållits som dokumentation av gruppens arbetsprocess.
